@@ -2,13 +2,12 @@ import React from 'react'
 import $ from 'jquery'
 import marked from 'marked'
 
-function Post(posts) {
-
+function Post (posts) {
   const center = {
     'marginLeft': 'auto',
     'marginRight': 'auto',
-    'maxWidth': '800px',
-    'minWidth': '320px'
+    'maxWidth': '800px'
+    // 'minWidth': '270px'
   }
   marked.setOptions({
     highlight: function (code) {

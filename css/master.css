@@ -9,7 +9,7 @@ body {
 
 .nav>li>a:focus, .nav>li>a:hover {
     text-decoration: none;
-    background-color: rgba(134, 2, 2, 0.67);
+    background-color: rgba(21, 21, 21, 0.33);
 }
 .nav-pills>li>a {
     border-radius: 0px;
@@ -30,10 +30,6 @@ body {
 
 .app-body {
     width: 100%;
-}
-.background-red {
-    background: #DC322F;
-    background-color: #DC322F !important;
 }
 .free-navbar {
     margin: 0;
@@ -63,4 +59,14 @@ body {
     padding-left: 0px;
     padding-right: 0px;
     overflow-y: auto;
+    border-radius: 0;
+}
+@media(max-width: 610px) {
+  .menu {
+    margin-left: -200px;
+    /*display: none;*/
+  }
+  .content {
+    width: calc(100% - 50px);
+  }
 }

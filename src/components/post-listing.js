@@ -27,12 +27,13 @@ const PostItem = ({post}) =>
   </li>
 
 const PostList = ({posts}) =>
-  <div className='menu alert alert-dismissible alert-primary'>
+  <div className='menu alert alert-dismissible alert-primary panel'>
     <a className='brand' href='#'>
-    <div style={imageContainer}>
-      <img src='http://placehold.it/125x125' style={imageStyle} />
-    </div>
-    <h1>SMST</h1>
+      <div style={imageContainer}>
+        <img src='http://placehold.it/250x250' style={imageStyle} />
+      </div>
+      <h1>SMST</h1>
+    </a>
     <div className='row' style={linkContainer}>
       <div className={linkWidth}></div>
       <div className={linkWidth}>
@@ -43,7 +44,6 @@ const PostList = ({posts}) =>
       </div>
       <div className={linkWidth}></div>
     </div>
-    </a>
     <ul className='nav nav-pills nav-stacked' >
       {posts.map((post, i) => {
         return <PostItem post={post} key={i} />
