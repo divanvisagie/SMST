@@ -1,0 +1,66 @@
+html, body, #app, .app-body {
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+    background: #fefefe;
+}
+
+.nav>li>a:focus, .nav>li>a:hover {
+    text-decoration: none;
+    background-color: rgba(134, 2, 2, 0.67);
+}
+.nav-pills>li>a {
+    border-radius: 0px;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+    border-bottom-left-radius: 0px;
+}
+
+.brand {
+  text-align: center;
+  text-decoration: none !important;
+}
+
+.brand h1 {
+  margin-top: 0;
+}
+
+.app-body {
+    width: 100%;
+}
+.background-red {
+    background: #DC322F;
+    background-color: #DC322F !important;
+}
+.free-navbar {
+    margin: 0;
+}
+.content {
+    position: relative;
+    width: calc(100% - 250px);
+    padding-left: 10px;
+    padding-right: 10px;
+    float: left;
+    height: 100%;
+    padding-bottom: 50px;
+    /*max-width: 800px;*/
+    margin-left: auto;
+    margin-right: auto;
+    overflow-y: auto;
+}
+.center {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+.menu {
+    width: 250px;
+    float: left;
+    height: 100%;
+    padding-left: 0px;
+    padding-right: 0px;
+    overflow-y: auto;
+}
