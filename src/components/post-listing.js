@@ -28,6 +28,11 @@ const PostItem = ({post}) =>
 
 const PostList = ({posts}) =>
   <div className='menu alert alert-dismissible alert-primary panel'>
+    <div className='menu-button'>
+      <a>
+        <i className='fa fa-bars'></i>
+      </a>
+    </div>
     <a className='brand' href='#'>
       <div style={imageContainer}>
         <img src='http://placehold.it/250x250' style={imageStyle} />
