@@ -21,14 +21,8 @@ const linkContainer = {
   margin: '0'
 }
 
-function getMenuStyle (shown) {
-  if (shown) {
-    return {
-      marginLeft: '0'
-    }
-  }
-  return {}
-}
+
+
 const MenuItem = ({item}) => {
   return (
     <li>
@@ -45,11 +39,32 @@ function createNavigation (options) {
   })
 
   return React.createClass({
+    getInitialState () {
+      return {
+        showMenuMobile: false
+      }
+    },
+    toggleMenu (event) {
+       event.preventDefault()
+       const currentState = this.state.showMenuMobile
+       this.setState({
+         showMenuMobile: !currentState
+       })
+    },
+    getMenuStyle () {
+      const currentState = this.state.showMenuMobile
+      if (currentState) {
+        return {
+          marginLeft: '0'
+        }
+      }
+      return {}
+    },
     render () {
       return (
-        <div className='menu alert alert-dismissible alert-primary panel'>
+        <div style={this.getMenuStyle()} className='menu alert alert-dismissible alert-primary panel'>
           <div className='menu-button'>
-            <a>
+            <a onClick={this.toggleMenu.bind(this)}>
               <i className='fa fa-bars'></i>
             </a>
           </div>
