@@ -29,14 +29,20 @@ function getMenuStyle (shown) {
   }
   return {}
 }
-
-const PostItem = ({post}) =>
-  <li>
-    <Link to={buildLink(post)}>{post.title}</Link>
-  </li>
+const MenuItem = ({item}) => {
+  return (
+    <li>
+      <Link to={item.target}>{item.title}</Link>
+    </li>
+  )
+}
 
 function createNavigation (options) {
-  const { posts, items } = options
+  const { posts } = options
+
+  const menuItems = posts.map(x => {
+    return { target: buildLink(x), title: x.title }
+  })
 
   return React.createClass({
     render () {
@@ -64,8 +70,8 @@ function createNavigation (options) {
             <div className={linkWidth}></div>
           </div>
           <ul className='nav nav-pills nav-stacked' >
-            {posts.map((post, i) => {
-              return <PostItem post={post} key={i} />
+            {menuItems.map((item, i) => {
+              return <MenuItem item={item} key={i} />
             })}
           </ul>
         </div>
