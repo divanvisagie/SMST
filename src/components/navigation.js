@@ -45,11 +45,11 @@ function createNavigation (options) {
       }
     },
     toggleMenu (event) {
-       event.preventDefault()
-       const currentState = this.state.showMenuMobile
-       this.setState({
-         showMenuMobile: !currentState
-       })
+      event.preventDefault()
+      const currentState = this.state.showMenuMobile
+      this.setState({
+        showMenuMobile: !currentState
+      })
     },
     getMenuStyle () {
       const currentState = this.state.showMenuMobile
