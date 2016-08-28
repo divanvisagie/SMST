@@ -1,6 +1,9 @@
 'use strict'
 let path = require('path')
 let webpack = require('webpack')
+let CopyWebpackPlugin = require('copy-webpack-plugin')
+
+const outputDirectory = 'docs'
 
 module.exports = {
   entry: [
@@ -8,7 +11,7 @@ module.exports = {
     'webpack-hot-middleware/client?reload=true'
   ],
   output: {
-    path: path.join(__dirname, 'dist'),
+    path: path.join(__dirname, outputDirectory),
     filename: 'app.js'
   },
   module: {
@@ -28,6 +31,15 @@ module.exports = {
     new webpack.ResolverPlugin(
       new webpack.ResolverPlugin.DirectoryDescriptionFilePlugin('.bower.json', ['main'])
     ),
+    new CopyWebpackPlugin([
+      // {output}/file.txt
+      { from: 'index.html' },
+      { from: 'posts', to: 'posts' },
+      { from: 'posts', to: 'resources' },
+      { from: 'css', to: 'css' },
+      // Copy directory contents to {output}/
+      { from: 'bower_components', to: 'bower_components' }
+    ]),
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin()
