@@ -2,19 +2,19 @@ import React from 'react'
 import { render } from 'react-dom'
 import { Router, Route, hashHistory, IndexRoute } from 'react-router'
 
-import PostList from './components/post-listing'
+import createNavigation from './components/navigation'
 import Post from './components/post'
 import posts from '../posts/posts'
 
-
 const post = Post(posts)
+const Navigation = createNavigation({posts})
 
 const App = React.createClass({
   render () {
     return (
       <div className='app-body'>
         <div className='app-body'>
-          <PostList posts={posts} />
+          <Navigation />
           <div className='content'>
             {this.props.children}
           </div>
