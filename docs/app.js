@@ -65,7 +65,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "0ba66e6da643e108907a"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "39120344297609e3a8d3"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -42232,18 +42232,7 @@
 	  id: 'introduction',
 	  path: 'posts/introduction/README.md',
 	  title: 'Introduction'
-	}
-	// {
-	//   id: '4fe1af76-5f91-4546-a8cf-35f0e50ddb64',
-	//   path: 'posts/404.md',
-	//   title: '404'
-	// },
-	// {
-	//   id: 'd329815d-ac99-48dc-a8a9-e6bb1bca3dc9',
-	//   path: 'posts/test.md',
-	//   title: 'Lorem Ipsum'
-	// }
-	];
+	}];
 	
 	exports.default = posts;
 
@@ -42261,9 +42250,9 @@
 	
 	var _reactRouter = __webpack_require__(91);
 	
-	var _postListing = __webpack_require__(415);
+	var _navigation = __webpack_require__(415);
 	
-	var _postListing2 = _interopRequireDefault(_postListing);
+	var _navigation2 = _interopRequireDefault(_navigation);
 	
 	var _post = __webpack_require__(416);
 	
@@ -42276,6 +42265,7 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	var post = (0, _post2.default)(_posts2.default);
+	var Navigation = (0, _navigation2.default)({ posts: _posts2.default });
 	
 	var App = _react2.default.createClass({
 	  displayName: 'App',
@@ -42286,7 +42276,7 @@
 	      _react2.default.createElement(
 	        'div',
 	        { className: 'app-body' },
-	        _react2.default.createElement(_postListing2.default, { posts: _posts2.default }),
+	        _react2.default.createElement(Navigation, null),
 	        _react2.default.createElement(
 	          'div',
 	          { className: 'content' },
@@ -42346,82 +42336,114 @@
 	  margin: '0'
 	};
 	
-	var PostItem = function PostItem(_ref) {
-	  var post = _ref.post;
+	var MenuItem = function MenuItem(_ref) {
+	  var item = _ref.item;
+	
 	  return _react2.default.createElement(
 	    'li',
 	    null,
 	    _react2.default.createElement(
 	      _reactRouter.Link,
-	      { to: buildLink(post) },
-	      post.title
+	      { to: item.target },
+	      item.title
 	    )
 	  );
 	};
 	
-	var PostList = function PostList(_ref2) {
-	  var posts = _ref2.posts;
-	  return _react2.default.createElement(
-	    'div',
-	    { className: 'menu alert alert-dismissible alert-primary panel' },
-	    _react2.default.createElement(
-	      'div',
-	      { className: 'menu-button' },
-	      _react2.default.createElement(
-	        'a',
-	        null,
-	        _react2.default.createElement('i', { className: 'fa fa-bars' })
-	      )
-	    ),
-	    _react2.default.createElement(
-	      'a',
-	      { className: 'brand', href: '#' },
-	      _react2.default.createElement(
-	        'div',
-	        { style: imageContainer },
-	        _react2.default.createElement('img', { src: 'http://placehold.it/250x250', style: imageStyle })
-	      ),
-	      _react2.default.createElement(
-	        'h1',
-	        null,
-	        'SMST'
-	      )
-	    ),
-	    _react2.default.createElement(
-	      'div',
-	      { className: 'row', style: linkContainer },
-	      _react2.default.createElement('div', { className: linkWidth }),
-	      _react2.default.createElement(
-	        'div',
-	        { className: linkWidth },
-	        _react2.default.createElement(
-	          'a',
-	          { target: '_blank', href: 'https://github.com/divanvisagie/SMST' },
-	          _react2.default.createElement('i', { className: 'fa fa-github' })
-	        )
-	      ),
-	      _react2.default.createElement(
-	        'div',
-	        { className: linkWidth },
-	        _react2.default.createElement(
-	          'a',
-	          { target: '_blank', href: 'https://github.com/divanvisagie/SMST' },
-	          _react2.default.createElement('i', { className: 'fa fa-medium' })
-	        )
-	      ),
-	      _react2.default.createElement('div', { className: linkWidth })
-	    ),
-	    _react2.default.createElement(
-	      'ul',
-	      { className: 'nav nav-pills nav-stacked' },
-	      posts.map(function (post, i) {
-	        return _react2.default.createElement(PostItem, { post: post, key: i });
-	      })
-	    )
-	  );
-	};
+	function createNavigation(options) {
+	  var posts = options.posts;
 	
-	exports.default = PostList;
+	
+	  var menuItems = posts.map(function (x) {
+	    return { target: buildLink(x), title: x.title };
+	  });
+	
+	  return _react2.default.createClass({
+	    getInitialState: function getInitialState() {
+	      return {
+	        showMenuMobile: false
+	      };
+	    },
+	    toggleMenu: function toggleMenu(event) {
+	      event.preventDefault();
+	      var currentState = this.state.showMenuMobile;
+	      this.setState({
+	        showMenuMobile: !currentState
+	      });
+	    },
+	    getMenuStyle: function getMenuStyle() {
+	      var currentState = this.state.showMenuMobile;
+	      if (currentState) {
+	        return {
+	          marginLeft: '0'
+	        };
+	      }
+	      return {};
+	    },
+	    render: function render() {
+	      return _react2.default.createElement(
+	        'div',
+	        { style: this.getMenuStyle(), className: 'menu alert alert-dismissible alert-primary panel' },
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'menu-button' },
+	          _react2.default.createElement(
+	            'a',
+	            { onClick: this.toggleMenu.bind(this) },
+	            _react2.default.createElement('i', { className: 'fa fa-bars' })
+	          )
+	        ),
+	        _react2.default.createElement(
+	          'a',
+	          { className: 'brand', href: '#' },
+	          _react2.default.createElement(
+	            'div',
+	            { style: imageContainer },
+	            _react2.default.createElement('img', { src: 'http://placehold.it/250x250', style: imageStyle })
+	          ),
+	          _react2.default.createElement(
+	            'h1',
+	            null,
+	            'SMST'
+	          )
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'row', style: linkContainer },
+	          _react2.default.createElement('div', { className: linkWidth }),
+	          _react2.default.createElement(
+	            'div',
+	            { className: linkWidth },
+	            _react2.default.createElement(
+	              'a',
+	              { target: '_blank', href: 'https://github.com/divanvisagie/SMST' },
+	              _react2.default.createElement('i', { className: 'fa fa-github' })
+	            )
+	          ),
+	          _react2.default.createElement(
+	            'div',
+	            { className: linkWidth },
+	            _react2.default.createElement(
+	              'a',
+	              { target: '_blank', href: 'https://github.com/divanvisagie/SMST' },
+	              _react2.default.createElement('i', { className: 'fa fa-medium' })
+	            )
+	          ),
+	          _react2.default.createElement('div', { className: linkWidth })
+	        ),
+	        _react2.default.createElement(
+	          'ul',
+	          { className: 'nav nav-pills nav-stacked' },
+	          menuItems.map(function (item, i) {
+	            return _react2.default.createElement(MenuItem, { item: item, key: i });
+	          })
+	        )
+	      );
+	    }
+	  });
+	}
+	
+	exports.default = createNavigation;
 
 /***/ },
 /* 416 */
