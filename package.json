@@ -39,7 +39,7 @@
     "bootstrap-material-design": "^4.1.1",
     "font-awesome": "^4.7.0",
     "highlight.js": "^9.14.2",
-    "marked": "^0.6.1",
+    "marked": "^0.7.0",
     "react": "^16.8.1",
     "react-dom": "^16.8.1",
     "react-markdown-to-html": "^1.0.11",
